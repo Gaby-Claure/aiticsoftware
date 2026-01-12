@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC Software AI - Advanced Code Intelligence for NonStop Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4154FF;
+            --light-blue: #5E6EFF;
+            --accent-blue: #E4E7FF;
+            --purple: #DE9DFF;
+            --dark-text: #1D1E2B;
+            --white: #FFFFFF;
+            --light-gray: #F5F7FB;
+            --border-gray: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            height: 60px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-toggle::after {
+            content: '▼';
+            font-size: 0.6rem;
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            display: none;
+            border: 1px solid var(--border-gray);
+            margin-top: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--dark-text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background-color: var(--accent-blue);
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(65, 84, 255, 0.3);
+        }
+
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .cta-secondary:hover {
+            background-color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('file:///C:/Users/marce/Gamma%20home%20banner.jpg') center/cover no-repeat;
+            color: var(--white);
+            padding: 2rem 2rem 0 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 .ai-text {
+            color: #800000;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-button-primary {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .hero-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-button-secondary {
+            background-color: #003d99;
+            color: var(--white);
+            border: 2px solid #003d99;
+        }
+
+        .hero-button-secondary:hover {
+            background-color: #002966;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 1.5rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-gray);
+            transition: all 0.3s;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            gap: 1rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(65, 84, 255, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2E3192, #5B2E8B);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            grid-column: 1;
+            grid-row: 1;
+            flex-shrink: 0;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+            color: var(--dark-text);
+            grid-column: 2;
+            grid-row: 1;
+            align-self: center;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            grid-column: 1 / -1;
+            grid-row: 2;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .mission-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mission-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--dark-text);
+        }
+
+        .mission-items {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mission-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #003d99;
+        }
+
+        .mission-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .mission-image {
+            text-align: center;
+        }
+
+        .mission-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(65, 84, 255, 0.15);
+        }
+
+        /* Product Section */
+        .product {
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .product-image {
+            background-color: var(--accent-blue);
+            height: 400px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary-blue);
+        }
+
+        .product-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .product-text p {
+            margin-bottom: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #666;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 4rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 1.5rem 2rem;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-section a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 1.5rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 10px 25px rgba(65, 84, 255, 0.15);
+        }
+
+        .testimonial-text {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin: 0;
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
+        .author-info p {
+            margin: 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--accent-blue), rgba(222, 157, 255, 0.1));
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover:not(.featured) {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(65, 84, 255, 0.1);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            color: var(--dark-text);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-gray);
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            padding: 1.5rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .case-study-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(65, 84, 255, 0.15);
+        }
+
+        .case-study-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .case-study-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-text);
+        }
+
+        .case-study-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .case-study-result {
+            background: var(--accent-blue);
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-text);
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--accent-blue);
+            color: var(--primary-blue);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #666;
+            display: none;
+            background-color: var(--white);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--border-gray);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(65, 84, 255, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .blog-date {
+            color: #999;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-text);
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-gray);
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        .read-more::after {
+            content: '→';
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .blog-author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .blog-author-name {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Featured Blog Card */
+        .featured-blog {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .featured-blog .blog-image {
+            height: 100%;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .featured-blog .blog-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .featured-blog h3 {
+            font-size: 1.6rem;
+        }
+
+        @media (max-width: 900px) {
+            .featured-blog {
+                grid-column: auto;
+                display: block;
+            }
+
+            .featured-blog .blog-image {
+                border-radius: 12px 12px 0 0;
+                height: 220px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            .product-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-button {
+                width: 100%;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-text h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo"><img src="https://imgproxy.gamma.app/resize/quality:80/resizing_type:fit/width:2000/https://cdn.gamma.app/hsnr6l7tjhiyrr6/de94280145254b38b74d5ad4d168ec0a/original/TIC_Ai_Logo-bg_removed.png" alt="TIC AI Logo"></a>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#product">Product</a>
+                <a href="code-navigator.html">Navigator</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#blog">Blog</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-dropdown-toggle">Resources</a>
+                    <div class="nav-dropdown-menu">
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>TICSoftware.<span class="ai-text">Ai</span> Navigator</h1>
+            <p style="text-align: justify;">Discover how our cutting-edge AI technology is reshaping the landscape of HPE Nonstop systems. Learn how our AI-powered TIC Navigator helps organizations extract insights from Nonstop code - COBOL, SCOBOL, TAL, C, pTAL and TACL- quickly and accurately.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="hero-button hero-button-primary">Contact Us</a>
+                <a href="demo-request.html" class="hero-button hero-button-secondary">Request Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <div class="mission-text">
+                <h1>Our Mission</h1>
+                <div class="mission-items">
+                    <div class="mission-item">
+                        <h3>Revolutionize Nonstop Interaction</h3>
+                        <p>Provide AI-driven tools to extract, organize, and deliver actionable knowledge that makes HPE Nonstop systems more accessible and manageable through intelligent tooling.</p>
+                    </div>
+                    <div class="mission-item">
+                        <h3>Drive Innovation</h3>
+                        <p>Empower organizations to leverage their Nonstop systems more effectively by maximizing existing technology investments with modern solutions tailored to legacy system environments.</p>
+                    </div>
+                    <div class="mission-item">
+                        <h3>Reduce Expert Dependency</h3>
+                        <p>Mitigate risks associated with retiring experts through knowledge preservation, addressing the critical industry challenge of capturing institutional knowledge before experienced developers leave.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-image">
+                <img src="file:///C:/TIC%20Files/TIC.AI/TIC.AI%20images/Gamma/Mission_ai.jpg" alt="Our Mission">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-title">
+            <h2>Why Choose TIC AI Navigator?</h2>
+            <p>Our core competencies drive innovation and deliver measurable value</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>LLM Expertise</h3>
+                <p>We carefully select appropriate language models for specific tasks to ensure optimal AI solution performance and accuracy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>Optimized Prompts</h3>
+                <p>Meticulously refined prompting strategies maximize efficiency and accuracy across all AI-powered applications.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3>NonStop Expertise</h3>
+                <p>Deep knowledge of Nonstop systems and application development enables targeted, informed solutions tailored to client needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Actionable Insights</h3>
+                <p>Our platform delivers information that strengthens knowledge bases and produces meaningful business value and measurable improvements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product" class="product">
+        <div class="product-content">
+            <div>
+                <h2>Our Products</h2>
+                <p>TIC AI Navigator is the industry-first AI assistant built specifically for NonStop system development. Powered by deep domain expertise and advanced machine learning.</p>
+                <ul class="features-list">
+                    <li>Real-time code recommendations and generation</li>
+                    <li>Intelligent documentation generation</li>
+                    <li>Automated testing and validation</li>
+                    <li>Integration with existing development tools</li>
+                    <li>24/7 technical support for NonStop experts</li>
+                    <li>Continuous learning from your codebase</li>
+                </ul>
+                <p style="margin-top: 2rem; margin-bottom: 1.5rem; font-size: 1rem; color: #666;"><strong>Also available:</strong> Code Navigator for comprehensive code analysis, documentation generation, and knowledge base creation.</p>
+                <a href="code-navigator.html" class="cta-button" style="background: #003d99;">Explore Navigator</a>
+            </div>
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop" alt="Code Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Our Customers Say</h2>
+            <p>Trusted by leading enterprises to accelerate their NonStop development</p>
+        </div>
+        <div class="testimonials-grid" style="grid-template-columns: 1fr; max-width: 800px;">
+            <div class="testimonial-card" style="display: flex; align-items: center; gap: 2rem;">
+                <div style="flex: 1;">
+                    <p class="testimonial-text" style="text-align: justify;">"The TIC team has done it again with a unique and innovative approach to harnessing the power of AI in a suite of new products to help Nonstop organizations manage their resources, particularly in the development space. It is an exciting time to leverage their AI expertise."</p>
+                </div>
+                <div style="flex-shrink: 0;">
+                    <img src="file:///C:/TIC%20Files/Logos/Gravic.jpeg" alt="Gravic Logo" style="max-width: 150px; height: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Lines of Code Generated Daily</p>
+            </div>
+            <div class="stat-item">
+                <h3>40%</h3>
+                <p>Faster Development Cycles</p>
+            </div>
+            <div class="stat-item">
+                <h3>99.9%</h3>
+                <p>System Uptime Guarantee</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Enterprise Clients</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-title">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Choose the perfect plan for your team's needs</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$99<span class="price-period">/month</span></div>
+                <p>Perfect for small teams getting started</p>
+                <ul class="pricing-features">
+                    <li>Up to 5 team members</li>
+                    <li>5,000 code generation requests/month</li>
+                    <li>Basic code analysis</li>
+                    <li>Email support</li>
+                </ul>
+                <button class="cta-button">Get Started</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">MOST POPULAR</div>
+                <h3>Professional</h3>
+                <div class="price">$499<span class="price-period">/month</span></div>
+                <p>For growing development teams</p>
+                <ul class="pricing-features">
+                    <li>Up to 25 team members</li>
+                    <li>50,000 code generation requests/month</li>
+                    <li>Advanced code analysis</li>
+                    <li>Solution templates</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="cta-button">Start Free Trial</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom<span class="price-period">/month</span></div>
+                <p>For large organizations</p>
+                <ul class="pricing-features">
+                    <li>Unlimited team members</li>
+                    <li>Unlimited code generation</li>
+                    <li>Custom integrations</li>
+                    <li>On-premises deployment</li>
+                    <li>Dedicated support</li>
+                </ul>
+                <button class="cta-button cta-secondary">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>See how leading companies are transforming their NonStop development</p>
+        </div>
+        <div class="case-study-grid">
+            <div class="case-study-card">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=200&fit=crop" alt="FinTech Corp Case Study">
+                <div class="case-study-content">
+                    <span class="case-study-tag">Banking & Finance</span>
+                    <h3>FinTech Corp Cuts Development Time by 40%</h3>
+                    <p class="case-study-excerpt">FinTech Corp integrated TIC AI Navigator into their development pipeline, resulting in significant productivity gains and faster feature releases.</p>
+                    <div class="case-study-result">
+                        Result: 6 months → 3.5 months per major release
+                    </div>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=200&fit=crop" alt="Global Payments Case Study">
+                <div class="case-study-content">
+                    <span class="case-study-tag">Payment Systems</span>
+                    <h3>Global Payments Reduces Code Review Issues by 65%</h3>
+                    <p class="case-study-excerpt">By leveraging AI-powered code analysis, Global Payments identified and prevented critical bugs before code review, improving overall code quality.</p>
+                    <div class="case-study-result">
+                        Result: 65% fewer review cycles required
+                    </div>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <img src="https://images.unsplash.com/photo-1517694712404-59c4a3f1d73f?w=500&h=200&fit=crop" alt="Enterprise Solutions Case Study">
+                <div class="case-study-content">
+                    <span class="case-study-tag">Enterprise Solutions</span>
+                    <h3>Enterprise Solutions Improves Team Velocity by 35%</h3>
+                    <p class="case-study-excerpt">With intelligent code generation and real-time recommendations, the team achieved significant improvements in development velocity and code quality metrics.</p>
+                    <div class="case-study-result">
+                        Result: +35% team velocity improvement
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="section-title">
+            <h2>Latest Insights & Updates</h2>
+            <p>Stay informed with tips, tutorials, and best practices for NonStop development</p>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card featured-blog">
+                <a href="tic-navigator-blog-post.html" style="text-decoration: none; display: block;">
+                    <img src="https://static.wixstatic.com/media/c38e8b_c2b57e934cd249f1b23e3f7bc7c9c357~mv2.png/v1/fill/w_1000,h_634,al_c,q_90,usm_0.66_1.00_0.01/c38e8b_c2b57e934cd249f1b23e3f7bc7c9c357~mv2.png" alt="TIC Navigator Empowers Nonstop Modernization" class="blog-image">
+                </a>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Modernization</span>
+                        <span class="blog-date">Oct 2, 2025</span>
+                    </div>
+                    <h3><a href="tic-navigator-blog-post.html" style="color: inherit; text-decoration: none;">TIC Navigator Empowers Nonstop Modernization</a></h3>
+                    <p class="blog-excerpt">TIC Navigator uses Generative AI to make modernization smarter and faster. Discover how artificial intelligence is revolutionizing the way organizations modernize their legacy NonStop systems and accelerate digital transformation with intelligent automation.</p>
+                    <div class="blog-footer">
+                        <a href="tic-navigator-blog-post.html" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop" alt="Phil Ly" class="blog-author-avatar">
+                            <span class="blog-author-name">Phil Ly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=500&h=220&fit=crop" alt="NonStop Development Trends" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Trends</span>
+                        <span class="blog-date">Jan 10, 2026</span>
+                    </div>
+                    <h3>2026 NonStop Development Trends to Watch</h3>
+                    <p class="blog-excerpt">Explore the emerging trends shaping NonStop development in 2026. From AI-assisted coding to advanced automation, we discuss what's next for enterprise systems and how to prepare your team for the future of development.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop" alt="Michael Rodriguez" class="blog-author-avatar">
+                            <span class="blog-author-name">Michael Rodriguez</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f70d504d0?w=500&h=220&fit=crop" alt="Modernizing Legacy Systems" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Tutorial</span>
+                        <span class="blog-date">Jan 5, 2026</span>
+                    </div>
+                    <h3>Step-by-Step Guide to Modernizing Legacy NonStop Code</h3>
+                    <p class="blog-excerpt">A comprehensive guide to refactoring and modernizing your legacy NonStop codebase without disrupting business operations. Learn proven strategies, tools, and best practices from enterprise development teams.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=crop" alt="James Mitchell" class="blog-author-avatar">
+                            <span class="blog-author-name">James Mitchell</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1614694267537-b85ca80c78a1?w=500&h=220&fit=crop" alt="Security Best Practices" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Security</span>
+                        <span class="blog-date">Dec 28, 2025</span>
+                    </div>
+                    <h3>Securing Your NonStop Applications in the AI Era</h3>
+                    <p class="blog-excerpt">Understand the security implications of integrating AI tools into your development workflow. We cover data protection, compliance requirements, and best practices for keeping your NonStop systems secure.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop" alt="Dr. Lisa Wang" class="blog-author-avatar">
+                            <span class="blog-author-name">Dr. Lisa Wang</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=220&fit=crop" alt="Integration Patterns" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Integration</span>
+                        <span class="blog-date">Dec 20, 2025</span>
+                    </div>
+                    <h3>Common Integration Patterns for NonStop Systems</h3>
+                    <p class="blog-excerpt">Explore the most effective integration patterns for connecting NonStop systems with modern cloud platforms. Learn from real-world examples and industry best practices that can accelerate your integration projects.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop" alt="David Park" class="blog-author-avatar">
+                            <span class="blog-author-name">David Park</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=220&fit=crop" alt="Team Productivity" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Productivity</span>
+                        <span class="blog-date">Dec 15, 2025</span>
+                    </div>
+                    <h3>Boosting Team Productivity with AI Code Assistants</h3>
+                    <p class="blog-excerpt">Discover how AI code assistants can help your team work smarter, not harder. Learn techniques for onboarding new developers, reducing context switching, and maintaining code consistency across large projects.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=crop" alt="Emma Thompson" class="blog-author-avatar">
+                            <span class="blog-author-name">Emma Thompson</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Modernize Your NonStop Systems?</h2>
+            <p>Join leading enterprises using TIC AI Navigator to accelerate development and reduce time-to-market.</p>
+            <a href="demo-request.html" class="cta-button" style="display: inline-block; text-decoration: none;">Schedule a Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Security</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Compliance</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TIC Software. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and testimonial cards
+        document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .case-study-card, .blog-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
